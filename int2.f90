@@ -748,27 +748,19 @@ subroutine Boys_Gen(m,w,F)
           
 end subroutine Boys_Gen
 !=======================================================================
-subroutine GTO_s(a,b,Ra,Rba,K,AB,Rp) 
-
+subroutine GTO_s(a,b,Ra,Rb,K,AB,Rp) 
+    
     implicit none
     integer i
-    real(kind=8) a,b,K,T
-    real(kind=8) Ra(3),Rba(3),Rp(3)
+    real(kind=8) a,b,K
+    real(kind=8) Ra(3),Rb(3),Rp(3)
     real(kind=8) AB
     
-    AB = (Rba(1))**2+(Rba(2))**2+(Rba(3))**2
-    
-    if( AB < 1.0d-12 ) then
-       K = 1.0d0
-       Rp = Ra
-       return
-    end if
-    
-    T = b/(a+b)
-    K = dexp(-a*T*AB)
+    AB = (Ra(1)-Rb(1))**2+(Ra(2)-Rb(2))**2+(Ra(3)-Rb(3))**2
+    K = dexp(-a*b/(a+b)*AB)
     
     do i = 1,3
-         Rp(i) = Rba(i)*T + Ra(i)
+         Rp(i) = (Rb(i)-Ra(i))*(b/(a+b)) + Ra(i)
     end do
     
 end subroutine GTO_s
