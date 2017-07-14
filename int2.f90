@@ -1,4 +1,4 @@
-program mian
+program main
 
     implicit none
     integer La(3),Lb(3),Lc(3),Ld(3)
@@ -22,7 +22,7 @@ program mian
     call E_E_Repulsion_sp(a,b,c,d,Ra,Rb,Rc,Rd,La,Lb,Lc,Ld,S) !Has been normalized
     write(*,*) S
     
-end program mian
+end program main
 !======================================================================= 
 subroutine E_E_Repulsion_sp(a,b,c,d,Ra,Rb,Rc,Rd,La,Lb,Lc,Ld,S)
 
